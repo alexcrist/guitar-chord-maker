@@ -1,0 +1,85 @@
+:root {
+    --fret-size: min(5dvw, 40px);
+    --pressed-dot-size: 0.5;
+}
+
+.guitarNeck {
+    display: flex;
+}
+
+.fretColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fretLine {
+    position: absolute;
+    right: 0;
+    top: calc(var(--fret-size) / 2);
+    bottom: calc(var(--fret-size) / 2);
+    border-right: 1px solid black;
+}
+
+.fretColumn0 .fretLine {
+    border-right-width: 3px;
+}
+
+.stringSection {
+    width: var(--fret-size);
+    height: var(--fret-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stringSectionLine {
+    height: 1px;
+    width: 100%;
+    background-color: #666;
+}
+
+.fretLabel {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: -20px;
+}
+
+.pressedStringDot {
+    width: calc(var(--fret-size) * var(--pressed-dot-size));
+    height: calc(var(--fret-size) * var(--pressed-dot-size));
+    border-radius: 50%;
+    position: absolute;
+}
+
+.mutedStringX {
+    width: calc(var(--fret-size) * var(--pressed-dot-size));
+    height: calc(var(--fret-size) * var(--pressed-dot-size));
+    transform: rotate(45deg);
+    color: #666;
+    position: absolute;
+}
+
+.pressedStringDot.isPressed {
+    background-color: #006000;
+}
+
+.stringSection:hover .pressedStringDot:not(.isPressed) {
+    background-color: #ccc;
+}
+
+.stringSection:hover {
+    cursor: pointer;
+}
+
+.fretDot {
+    width: calc(var(--fret-size) * var(--pressed-dot-size));
+    height: calc(var(--fret-size) * var(--pressed-dot-size));
+    transform: rotate(45deg);
+    color: #eee;
+    position: absolute;
+}
