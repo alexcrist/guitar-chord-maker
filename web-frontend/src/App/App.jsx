@@ -20,7 +20,12 @@ const App = () => {
             );
             return {};
         }
-        return guitar.getChordInfo(chordString);
+        try {
+            return guitar.getChordInfo(chordString);
+        } catch (error) {
+            console.error(error);
+            return {};
+        }
     }, [chordString]);
 
     // Custom chord name
