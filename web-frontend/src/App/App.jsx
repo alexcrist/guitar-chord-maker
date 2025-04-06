@@ -34,7 +34,9 @@ const App = () => {
     // Allow user to select chord name
     const [chordNameIndex, setChordNameIndex] = useState(0);
     const chordNameValues = useMemo(() => {
-        return (chordInfo?.chords ?? []).map((chord) => chord.name);
+        return (chordInfo?.chords ?? []).map((chord) => {
+            return chord.name.replaceAll("Maj", "").replaceAll("min", "m");
+        });
     }, [chordInfo?.chords]);
     useEffect(() => {
         setChordNameIndex(0);
@@ -59,14 +61,16 @@ const App = () => {
             type: "image/svg+xml;charset=utf-8",
         });
         const url = URL.createObjectURL(svgBlob);
-
         const img = new Image();
         img.onload = () => {
             const canvas = document.createElement("canvas");
             canvas.width = svg.clientWidth;
             canvas.height = svg.clientHeight;
             const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
+            ctx.rect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             canvas.toBlob((blob) => {
                 const pngUrl = URL.createObjectURL(blob);
                 const a = document.createElement("a");
