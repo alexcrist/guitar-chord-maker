@@ -34,9 +34,7 @@ const App = () => {
     // Allow user to select chord name
     const [chordNameIndex, setChordNameIndex] = useState(0);
     const chordNameValues = useMemo(() => {
-        return (chordInfo?.chords ?? []).map((chord) => {
-            return chord.name.replaceAll("Maj", "").replaceAll("min", "m");
-        });
+        return (chordInfo?.chords ?? []).map((chord) => chord.name);
     }, [chordInfo?.chords]);
     useEffect(() => {
         setChordNameIndex(0);
